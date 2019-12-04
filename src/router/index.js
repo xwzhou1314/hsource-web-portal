@@ -9,7 +9,6 @@ import SimpleHeader from '@/components/header/SimpleHeader/SimpleHeader'
 import CommonFooter from '@/components/footer/CommonFooter'
 
 // 首页
-import HomeContent from '@/components/content/HomeContent'
 import ArticleContent from '@/components/content/ArticleContent'
 import BookNoteContent from '@/components/content/BookNoteContent'
 import BookContent from '@/components/content/BookContent'
@@ -34,7 +33,7 @@ let router = new Router({
           name: 'index',
           components: {
             header: SimpleHeader,
-            content: HomeContent,
+            content: ArticleListContent,
             footer: CommonFooter
           },
           meta: {

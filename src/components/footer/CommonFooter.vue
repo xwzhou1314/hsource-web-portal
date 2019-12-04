@@ -1,11 +1,11 @@
 <template>
   <div class="common-footer">
     <p class="copyright">
-      <a href="http://www.miibeian.gov.cn/" target="_blank">{{ siteInfo.icp }}</a>
+      {{ siteInfo.begin }}
       <span>|</span>
-      {{ siteInfo.copyright }}
+      {{ siteInfo.content }}
       <span>|</span>
-      <span v-html="siteInfo.copyright_desc"></span>
+      <span v-html="siteInfo.foot"></span>
     </p>
   </div>
 </template>
@@ -15,9 +15,9 @@ export default {
   data () {
     return {
       siteInfo: {
-        icp: '粤ICP备17117756号',
-        copyright: '版权所有 © 2018 - 2019',
-        copyright_desc: '以商业目的使用本网站内容需获许可，非商业目的使用授权遵循CC BY-NC 4.0'
+        begin: '(:3[▓▓]快醒醒开学了',
+        content: '(。＿ 。） ✎＿学习计划走起',
+        foot: '我的快乐时光，就此展开喽'
       }
     }
   }

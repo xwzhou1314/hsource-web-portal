@@ -10,8 +10,8 @@
       <div id="header"  v-show="show">
     <router-link id="logo" to="/">
       <img src="../../../assets/logo.png">
-      <span class="title">DB's Blog</span>
-      <span class="motto">success belongs to the persevering</span>
+      <span class="title">快乐源泉</span>
+      <span class="motto">专治不开心，我的快乐源泉</span>
     </router-link>
     <ul id="nav">
       <li>
@@ -30,11 +30,8 @@
         class="aa-dataset-1"></div></span></span>
         </form>
       </li>
-
-      <li><a href="/articles" class="nav-link contribute">文章</a></li>
-      <li><a href="/books" class="nav-link contribute">阅读</a></li>
-      <li><a href="/timeline" class="nav-link contribute">时光轴</a></li>
-      <li><a href="/article/1" class="nav-link contribute">关于</a></li>
+      <li v-if="user && user.name"><span  class="nav-link contribute">{{user.name}}</span></li>
+      <li v-else><span  class="nav-link contribute" @click="login()">登录</span></li>
     </ul>
     </div>
     </transition>
@@ -55,12 +52,26 @@ export default {
       show: true,
       articleCategoryList: [],
       bookCategoryList: [],
-      keywords: ''
+      keywords: '',
+      username: '',
+      password: '',
+      user: null
     }
   },
   created () {
     this.listCategory()
     this.keywords = this.$route.query.keywords
+    this.username = 'lisi'
+    this.password = '123'
+
+    // 验证
+    this.$http({
+      url: this.$http.adornUrl('api/auth/verify'),
+      method: 'get'
+    }).then((resp) => {
+      console.log(resp.data)
+      this.user = resp.data
+    })
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -74,6 +85,15 @@ export default {
     window.onmousewheel = document.onmousewheel = this.watchScroll
   },
   methods: {
+    // 登录
+    login () {
+      this.$http({
+        url: this.$http.adornUrl('api/auth/login?username='+ this.username + '&password=' + this.password),
+        params: this.$http.adornParams(this.username, this.password),
+        method: 'post'
+      }).then(({data}) => {
+      })
+    },
     initMobileMenu () {
       // 显示手机端的菜单
       var sidebar = this.$refs.sidebar
