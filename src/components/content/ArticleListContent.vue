@@ -9,15 +9,15 @@
                                :defaultCategory="selected_category"
                                :mainTitle="'123'" :sub-title="'Articles'" ></article-list-header>
           <article-list-cell v-for="article in articleList" :article="article" :key="article.id"></article-list-cell>
-          <browse-more @browseMore="browseMore" :noMoreData="noMoreData"  ref="browseMore"></browse-more>
+          <!--<browse-more @browseMore="browseMore" :noMoreData="noMoreData"  ref="browseMore"></browse-more>-->
         </div>
       </iv-col>
-      <iv-col :xs="0" :sm="0" :md="0" :lg="7">
-        <div class="layout-right">
-          <recommend></recommend>
-          <tag-wall style="margin-top: 15px;"></tag-wall>
-        </div>
-      </iv-col>
+      <!--<iv-col :xs="0" :sm="0" :md="0" :lg="7">-->
+        <!--<div class="layout-right">-->
+          <!--<recommend></recommend>-->
+          <!--<tag-wall style="margin-top: 15px;"></tag-wall>-->
+        <!--</div>-->
+      <!--</iv-col>-->
     </iv-row>
   </div>
 </template>
@@ -31,7 +31,6 @@ import Recommend from '@/components/views/Recommend'
 import TagWall from '@/components/views/TagWall'
 import BrowseMore from '@/components/views/BrowseMore'
 import merge from 'lodash/merge'
-import {treeDataTranslate} from '@/utils'
 import {DefaultLimitSize} from '@/common/js/const'
 
 export default {
@@ -77,16 +76,12 @@ export default {
       })
     },
     listCategory () {
-      let params = {}
-      params.type = 0
       this.$http({
-        url: this.$http.adornUrl('/operation/categories'),
-        method: 'get',
-        params: this.$http.adornParams(params)
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          this.categoryList = treeDataTranslate(data.categoryList)
-        }
+        url: this.$http.adornUrl('api/item/invitation/selectList'),
+        method: 'post'
+      }).then((resp) => {
+        this.articleList = resp.data
+        console.log(this.articleList)
       })
     },
     filterByMenu (params) {

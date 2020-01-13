@@ -5,7 +5,6 @@ import 'iview/dist/styles/iview.css'
 import '@/common/stylus/index.styl'
 import App from './App.vue'
 import httpRequest from '@/utils/httpRequest'
-
 // iView UI 组件引入
 import {
   Row,
@@ -18,9 +17,19 @@ import {
   Rate,
   Modal,
   Message,
-  Notice
+  Notice,
+  Spin,
+  Form,
+  Input,
+  FormItem,
+  Table
 } from 'iview'
 
+Vue.component('Table', Table)
+Vue.component('FormItem', FormItem)
+Vue.component('Input', Input)
+Vue.component('Form', Form)
+Vue.component('Spin', Spin)
 Vue.component('iv-row', Row)
 Vue.component('iv-col', Col)
 Vue.component('iv-button', Button)

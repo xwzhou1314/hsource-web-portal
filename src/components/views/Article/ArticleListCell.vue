@@ -9,21 +9,28 @@
               <span class="special" v-if="article.top>0" title="置顶">置顶</span>
             </h4>
             <div class="tags">
-              <iv-tag :color="index | mapTagColor" :key="tag.id" type="border" v-for ="(tag , index) in article.tagList">{{tag.name}}</iv-tag>
+              <span >{{article.type}}</span>
             </div>
-            <p class="desc">{{article.description | filterHtml | textLineBreak(70) }}<a :href="'/article/'+article.id"> 查看更多
-              <iv-icon type="arrow-right-b"></iv-icon>
-            </a></p>
+            <p class="desc" >{{article.title | filterHtml | textLineBreak(70) }}
+            </p>
+            <!--<div class="tags">-->
+              <!--<iv-tag :color="index | mapTagColor" :key="tag.id" type="border" v-for ="(tag , index) in article.tagList">{{tag.name}}</iv-tag>-->
+            <!--</div>-->
             <p class="operate_info">
-              <span class="publish-time">At time / <a>{{article.createTime | socialDate}}</a></span>
-              <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{article.readNum}} 阅读</a></span>
+              <span class="publish-time">At time / <a>{{article.operateDate | socialDate}}</a></span>
+              <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{article.operateDate}} 阅读</a></span>
               <span class="likes"><a @click="likePost(article)"><iv-icon type="heart"></iv-icon> {{article.likeNum}} 喜欢</a></span>
             </p>
+
+            <!--<p class="desc">{{article.description | filterHtml | textLineBreak(70) }}<a :href="'/article/'+article.id"> 查看更多-->
+            <!--<iv-icon type="arrow-right-b"></iv-icon>-->
+            <!--</a></p>-->
           </div>
         </iv-col>
         <iv-col :xs="0" :sm="0" :md="imgSpan" :lg="imgSpan" :order="imgOrderType" style="padding-left: 0px;padding-right: 0px">
           <div class="img-wrapper" :class="themeClass">
-            <img :src="article.cover" alt="">
+            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1575786618&di=07d4739c10a9e3a913bd29c40ae5bba7&src=http://attachments.gfan.com/forum/attachments2/day_121015/121015132642710c6785da6ccf.jpg
+" alt="">
           </div>
         </iv-col>
       </iv-row>

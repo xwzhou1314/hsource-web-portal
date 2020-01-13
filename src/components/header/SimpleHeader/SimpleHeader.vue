@@ -31,7 +31,7 @@
         </form>
       </li>
       <li v-if="user && user.name"><span  class="nav-link contribute">{{user.name}}</span></li>
-      <li v-else><span  class="nav-link contribute" @click="login()">登录</span></li>
+      <li v-else><a :href="'/login'">登录</a></li>
     </ul>
     </div>
     </transition>
@@ -88,7 +88,7 @@ export default {
     // 登录
     login () {
       this.$http({
-        url: this.$http.adornUrl('api/auth/login?username='+ this.username + '&password=' + this.password),
+        url: this.$http.adornUrl('api/auth/login?username=' + this.username + '&password=' + this.password),
         params: this.$http.adornParams(this.username, this.password),
         method: 'post'
       }).then(({data}) => {

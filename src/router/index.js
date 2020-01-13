@@ -9,13 +9,11 @@ import SimpleHeader from '@/components/header/SimpleHeader/SimpleHeader'
 import CommonFooter from '@/components/footer/CommonFooter'
 
 // 首页
-import ArticleContent from '@/components/content/ArticleContent'
-import BookNoteContent from '@/components/content/BookNoteContent'
-import BookContent from '@/components/content/BookContent'
 import ArticleListContent from '@/components/content/ArticleListContent'
-import BookListContent from '@/components/content/BookListContent'
-import TimeLineContent from '@/components/content/TimeLineContent'
-import SearchResultContent from '@/components/content/SearchResultContent'
+import InvitationPageContent from '@/components/content/InvitationPageContent'
+
+// 登录
+import Login from '@/components/login/login'
 
 Vue.use(Router)
 
@@ -45,16 +43,7 @@ let router = new Router({
           name: 'article',
           components: {
             header: SimpleHeader,
-            content: ArticleContent,
-            footer: CommonFooter
-          }
-        },
-        {
-          path: 'articles',
-          name: 'articles',
-          components: {
-            header: SimpleHeader,
-            content: ArticleListContent,
+            content: InvitationPageContent,
             footer: CommonFooter
           },
           meta: {
@@ -62,78 +51,10 @@ let router = new Router({
           }
         },
         {
-          path: 'articles/category/:id',
-          name: 'articles/category',
+          path: 'login/',
+          name: 'login',
           components: {
-            header: SimpleHeader,
-            content: ArticleListContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '快乐源泉'
-          }
-        },
-        {
-          path: 'articles/search',
-          name: 'search',
-          components: {
-            header: SimpleHeader,
-            content: SearchResultContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '快乐源泉'
-          }
-        },
-        {
-          path: 'bookNote/:bookNoteId',
-          name: 'bookNote',
-          components: {
-            header: SimpleHeader,
-            content: BookNoteContent,
-            footer: CommonFooter
-          }
-        },
-        {
-          path: 'book/:bookId',
-          name: 'book',
-          components: {
-            header: SimpleHeader,
-            content: BookContent,
-            footer: CommonFooter
-          }
-        },
-        {
-          path: 'books',
-          name: 'books',
-          components: {
-            header: SimpleHeader,
-            content: BookListContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '快乐源泉'
-          }
-        },
-        {
-          path: 'books/category/:id',
-          name: 'books/category',
-          components: {
-            header: SimpleHeader,
-            content: BookListContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '快乐源泉'
-          }
-        },
-        {
-          path: 'timeline',
-          name: 'timeline',
-          components: {
-            header: SimpleHeader,
-            content: TimeLineContent,
-            footer: CommonFooter
+            content: Login
           },
           meta: {
             title: '快乐源泉'
