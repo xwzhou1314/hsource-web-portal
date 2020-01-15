@@ -25,6 +25,7 @@ import {
   Table
 } from 'iview'
 
+Vue.component('Button', Button)
 Vue.component('Table', Table)
 Vue.component('FormItem', FormItem)
 Vue.component('Input', Input)
@@ -32,7 +33,6 @@ Vue.component('Form', Form)
 Vue.component('Spin', Spin)
 Vue.component('iv-row', Row)
 Vue.component('iv-col', Col)
-Vue.component('iv-button', Button)
 Vue.component('iv-progress', Progress)
 Vue.component('iv-tag', Tag)
 Vue.component('iv-icon', Icon)
