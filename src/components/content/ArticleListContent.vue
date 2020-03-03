@@ -82,6 +82,7 @@ export default {
       }).then((resp) => {
         this.articleList = resp.data
         console.log(this.articleList)
+        console.log(resp)
       })
     },
     filterByMenu (params) {
