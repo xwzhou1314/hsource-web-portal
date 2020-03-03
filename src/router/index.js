@@ -14,6 +14,8 @@ import InvitationPageContent from '@/components/content/InvitationPageContent'
 
 // 登录
 import Login from '@/components/login/login'
+// 注册
+import register from '@/components/login/register'
 
 Vue.use(Router)
 
@@ -55,6 +57,16 @@ let router = new Router({
           name: 'login',
           components: {
             content: Login
+          },
+          meta: {
+            title: '快乐源泉'
+          }
+        },
+        {
+          path: 'register/',
+          name: 'register',
+          components: {
+            content: register
           },
           meta: {
             title: '快乐源泉'
