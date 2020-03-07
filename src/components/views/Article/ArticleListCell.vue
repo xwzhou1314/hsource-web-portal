@@ -9,16 +9,19 @@
               <span class="special" v-if="article.top>0" title="置顶">置顶</span>
             </h4>
             <div class="tags">
-              <span >{{article.type}}</span>
+              <iv-tag :color="1 | mapTagColor" >{{article.type}}</iv-tag>
+              <!--<iv-tag :color="index | mapTagColor" :key="tag.id" type="border" v-for ="(tag , index) in article.tagList">{{tag.name}}</iv-tag>-->
+              <!--<span >{{article.type}}</span>-->
             </div>
-            <p class="desc" >{{article.title | filterHtml | textLineBreak(70) }}
-            </p>
+            <p class="desc" >{{article.title | filterHtml | textLineBreak(70) }}</p>
+            <p class="desc" >{{article.content | filterHtml | textLineBreak(100) }}</p>
+            <!--<p >{{article.content | filterHtml | textLineBreak(70) }}</p>-->
             <!--<div class="tags">-->
               <!--<iv-tag :color="index | mapTagColor" :key="tag.id" type="border" v-for ="(tag , index) in article.tagList">{{tag.name}}</iv-tag>-->
             <!--</div>-->
             <p class="operate_info">
-              <span class="publish-time">At time / <a>{{article.operateDate | socialDate}}</a></span>
-              <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{article.operateDate}} 阅读</a></span>
+              <span class="publish-time">At time / <a>{{article.operateDate}}</a></span>
+              <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{article.readNum}} 阅读</a></span>
               <span class="likes"><a @click="likePost(article)"><iv-icon type="heart"></iv-icon> {{article.likeNum}} 喜欢</a></span>
             </p>
 
@@ -28,9 +31,8 @@
           </div>
         </iv-col>
         <iv-col :xs="0" :sm="0" :md="imgSpan" :lg="imgSpan" :order="imgOrderType" style="padding-left: 0px;padding-right: 0px">
-          <div class="img-wrapper" :class="themeClass">
-            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1575786618&di=07d4739c10a9e3a913bd29c40ae5bba7&src=http://attachments.gfan.com/forum/attachments2/day_121015/121015132642710c6785da6ccf.jpg
-" alt="">
+          <div class="img-wrapper" :class="themeClass" style="margin-top: 15px;margin-right: 15px">
+            <img :src="article.attachmentUrl" alt="">
           </div>
         </iv-col>
       </iv-row>
@@ -87,16 +89,14 @@ export default {
   methods: {
     likePost (post) {
       this.$http({
-        url: this.$http.adornUrl('/article/like/' + post.id),
-        method: 'put',
-        data: this.$http.adornData()
-      }).then(({data}) => {
-        if (data && data.code === 200) {
+        url: this.$http.adornUrl('api/item/invitation/likeNum?id=' + post.id),
+        method: 'post'
+      }).then((resp) => {
+        console.log(resp)
+        if (resp.status === 200) {
           post.likeNum += 1
           this.$Message.success('点赞成功')
         }
-      }).catch((error) => {
-        console.log(error)
       })
     }
   }
@@ -107,7 +107,7 @@ export default {
   @import "../../../common/stylus/index.styl";
 
   .article-cell
-    margin-bottom 15px
+    margin-bottom 10px
     > a
       display block
       cursor default

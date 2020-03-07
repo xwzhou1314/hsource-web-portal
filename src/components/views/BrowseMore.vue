@@ -36,13 +36,7 @@ export default {
   },
   methods: {
     browseMore () {
-      if (this.noMoreData) {
-        this.loading = false
-        return
-      }
-      this.loading = true
-      this.$emit('browseMore')
-      this.loading = false
+      this.$router.push('moreList/')
     },
     stopLoading (noMoreData) {
       this.loading = false

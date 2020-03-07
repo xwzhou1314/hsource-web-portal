@@ -1,16 +1,16 @@
 <template>
   <div class="article-content" v-cloak>
     <iv-row>
-      <iv-col :xs="24" :sm="24" :md="24" :lg="17">
-        <div class="layout-left">
+
+        <div class="layout-content">
           <article-page-header :article="article"></article-page-header>
           <article-page-content>
             <article id="article-main-page" class="typo container" slot="content" ref="article"
-                     v-html="article.contentFormat">
+                     v-html="article.content">
             </article>
           </article-page-content>
         </div>
-      </iv-col>
+
     </iv-row>
   </div>
 </template>
@@ -28,16 +28,17 @@ export default {
     'article-page-content': ArticlePageContent
   },
   created: function () {
-    this.getArticle(this.$route.params.articleId)
+    this.getArticle(this.$route.params.id)
   },
   methods: {
-    getArticle (articleId) {
+    getArticle (id) {
       this.$http({
-        url: this.$http.adornUrl('/article/' + articleId),
+        url: this.$http.adornUrl('api/item/invitation/selectInvitationById?id=' + id),
         method: 'get'
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          this.article = data.article
+      }).then((resp) => {
+        console.log(resp)
+        if (resp.status === 200) {
+          this.article = resp.data
         }
       })
     }
@@ -68,5 +69,7 @@ export default {
         padding 0 10px
       @media screen and (min-width: 1200px)
         padding 0 10px
-
+  p{
+    text-indent:2em;
+  }
 </style>

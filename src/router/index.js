@@ -12,6 +12,8 @@ import CommonFooter from '@/components/footer/CommonFooter'
 import ArticleListContent from '@/components/content/ArticleListContent'
 import InvitationPageContent from '@/components/content/InvitationPageContent'
 
+// 更多
+import MoreListInvitationContent from '@/components/content/MoreListInvitationContent.vue'
 // 登录
 import Login from '@/components/login/login'
 // 注册
@@ -41,7 +43,7 @@ let router = new Router({
           }
         },
         {
-          path: 'article/:articleId',
+          path: 'article/:id',
           name: 'article',
           components: {
             header: SimpleHeader,
@@ -67,6 +69,18 @@ let router = new Router({
           name: 'register',
           components: {
             content: register
+          },
+          meta: {
+            title: '快乐源泉'
+          }
+        },
+        {
+          path: 'moreList/',
+          name: 'moreList',
+          components: {
+            header: SimpleHeader,
+            content: MoreListInvitationContent,
+            footer: CommonFooter
           },
           meta: {
             title: '快乐源泉'

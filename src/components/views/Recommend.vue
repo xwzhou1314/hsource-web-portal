@@ -3,13 +3,13 @@
     <panel :title="'推荐阅读'">
       <div slot="content" class="content">
         <div class="top" v-if="topRecommend">
-          <a :href="'/' + topRecommend.urlType + '/' + topRecommend.linkId">
+          <a :href="'/article/' + topRecommend.id">
             <p class="title">{{topRecommend.title}}</p>
             <div class="tags">
               <iv-tag  :color="index | mapTagColor" v-for="(tag,index) in topRecommend.tagList" :key="tag.id">{{tag.name}}</iv-tag>
             </div>
             <p class="info">
-              <span class="time">{{topRecommend.createTime | socialDate }}</span>
+              <span class="time">{{topRecommend.operateDate }}</span>
               <span class="likes"><a><iv-icon type="heart"></iv-icon> {{topRecommend.likeNum}} </a></span>
               <span class="comments"><a><iv-icon type="compose"></iv-icon> {{topRecommend.commentNum}} </a></span>
               <span class="readings"><a><iv-icon type="eye"></iv-icon> {{topRecommend.readNum}} </a></span>
@@ -22,10 +22,10 @@
         </div>
         <ul class="others">
           <li v-for="recommend in recommendList" :key="recommend.id">
-            <a :href="'/' + recommend.urlType + '/' +recommend.linkId">
+            <a :href="'/article/' + recommend.id">
               <p class="title">{{recommend.title}}</p>
               <p class="info">
-                <span class="time">{{recommend.createTime | socialDate }}</span>
+                <span class="time">{{recommend.operateDate}}</span>
                 <span class="likes"><a ><iv-icon type="heart"></iv-icon> {{recommend.likeNum}} </a></span>
                 <span class="comments"><a ><iv-icon type="compose"></iv-icon> {{recommend.commentNum}} </a></span>
                 <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{recommend.readNum}} </a></span>
@@ -55,17 +55,27 @@ export default {
   },
   methods: {
     listRecommend () {
+      // this.$http({
+      //   url: this.$http.adornUrl('/operation/recommends'),
+      //   method: 'get',
+      //   params: this.$http.adornParams()
+      // }).then(({data}) => {
+      //   if (data && data.code === 200) {
+      //     this.recommendList = data.recommendList
+      //     this.topRecommend = this.recommendList.shift()
+      //   }
+      // })
       this.$http({
-        url: this.$http.adornUrl('/operation/recommends'),
-        method: 'get',
-        params: this.$http.adornParams()
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          this.recommendList = data.recommendList
-          this.topRecommend = this.recommendList.shift()
-        }
+        url: this.$http.adornUrl('api/item/invitation/selectListHot'),
+        method: 'post'
+      }).then((resp) => {
+        this.recommendList = resp.data
+        this.topRecommend = this.recommendList.shift()
+        console.log(this.articleList)
+        console.log(resp)
       })
     }
+
   },
   components: {
     'panel': Panel

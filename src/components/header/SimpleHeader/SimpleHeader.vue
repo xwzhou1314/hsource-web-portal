@@ -14,35 +14,18 @@
       <span class="motto">专治不开心，我的快乐源泉</span>
     </router-link>
     <ul id="nav">
-      <li>
-        <form id="search-form" action="/articles/search">
-      <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
-        <input
-        type="text" id="search-query-nav" class="search-query st-default-search-input aa-input" name="keywords" v-model="keywords" @keyup.enter="submit"
-        autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false"
-        aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
-        <pre
-        aria-hidden="true"
-        style="position: absolute; visibility: hidden; white-space: pre; font-family: system-ui; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-        <span
-        class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0"
-        style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div
-        class="aa-dataset-1"></div></span></span>
-        </form>
-      </li>
-      <li v-if="user && user.name"><span  class="nav-link contribute">{{user.name}}</span></li>
+      <iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=10" width="300" height="25" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" ></iframe>
+      <li v-if="user && user.name"><span  class="nav-link contribute">你好呀！ {{user.name}}</span></li>
       <li v-else><a :href="'/login'">登录</a></li>
     </ul>
     </div>
     </transition>
-    <sidebar ref="sidebar" :articleCategoryList="articleCategoryList" :bookCategoryList="bookCategoryList"></sidebar>
   </div>
 
 </template>
 
 <script type="text/ecmascript-6">
 import SideBar from '@/components/header/SimpleHeader/SideBar'
-import {treeDataTranslate} from '@/utils'
 export default {
   components: {
     'sidebar': SideBar
@@ -118,25 +101,6 @@ export default {
           this.show = false
         }
       }
-    },
-    listCategory () {
-      this.$http({
-        url: this.$http.adornUrl('/operation/categories'),
-        method: 'get',
-        params: this.$http.adornParams()
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          data.categoryList.forEach(category => {
-            if (category.type === 0) {
-              this.articleCategoryList.push(category)
-            } else if (category.type === 1) {
-              this.bookCategoryList.push(category)
-            }
-          })
-          this.articleCategoryList = treeDataTranslate(this.articleCategoryList)
-          this.bookCategoryList = treeDataTranslate(this.bookCategoryList)
-        }
-      })
     }
   }
 }
