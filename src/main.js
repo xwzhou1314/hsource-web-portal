@@ -5,6 +5,7 @@ import 'iview/dist/styles/iview.css'
 import '@/common/stylus/index.styl'
 import App from './App.vue'
 import httpRequest from '@/utils/httpRequest'
+import VueCookies from 'vue-cookies'
 // iView UI 组件引入
 import {
   Row,
@@ -38,7 +39,6 @@ Vue.component('iv-tag', Tag)
 Vue.component('iv-icon', Icon)
 Vue.component('iv-affix', Affix)
 Vue.component('iv-rate', Rate)
-
 Vue.prototype.$http = httpRequest // Ajax 请求方法
 Vue.prototype.$Modal = Modal
 Vue.prototype.$Message = Message
@@ -76,6 +76,7 @@ let vm = new Vue({
   router,
   store,
   el: '#app',
+  VueCookies,
   render: h => h(App)
 })
 

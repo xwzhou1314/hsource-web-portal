@@ -42,66 +42,15 @@ export default {
     }
   },
   created () {
-    this.listCategory()
-    this.keywords = this.$route.query.keywords
-    this.username = 'lisi'
-    this.password = '123'
-
     // 验证
     this.$http({
       url: this.$http.adornUrl('api/auth/verify'),
       method: 'get'
     }).then((resp) => {
-      console.log(resp.data)
       this.user = resp.data
     })
   },
-  mounted: function () {
-    this.$nextTick(function () {
-      this.initMobileMenu()
-    })
-    // 给页面绑定滑轮滚动事件
-    if (document.addEventListener) { // firefox
-      document.addEventListener('DOMMouseScroll', this.watchScroll, false)
-    }
-    // 滚动滑轮触发scrollFunc方法  //ie 谷歌
-    window.onmousewheel = document.onmousewheel = this.watchScroll
-  },
   methods: {
-    // 登录
-    login () {
-      this.$http({
-        url: this.$http.adornUrl('api/auth/login?username=' + this.username + '&password=' + this.password),
-        params: this.$http.adornParams(this.username, this.password),
-        method: 'post'
-      }).then(({data}) => {
-      })
-    },
-    initMobileMenu () {
-      // 显示手机端的菜单
-      var sidebar = this.$refs.sidebar
-      this.$refs.menubutton.addEventListener('click', function () {
-        sidebar.toggleSideBar()
-      })
-    },
-    watchScroll (e) {
-      e = e || window.event
-      if (e.wheelDelta) {
-        if (e.wheelDelta > 0 && this.show === false) { // 当滑轮向上滚动
-          this.show = true
-        }
-        if (e.wheelDelta < 0 && this.show === true) { // 当滑轮向下滚动
-          this.show = false
-        }
-      } else if (e.detail) {
-        if (e.detail < 0 && this.show === false) { // 当滑轮向上滚动
-          this.show = true
-        }
-        if (e.detail > 0 && this.show === true) { // 当滑轮向下滚动
-          this.show = false
-        }
-      }
-    }
   }
 }
 </script>

@@ -13,8 +13,7 @@
               <!--<iv-tag :color="index | mapTagColor" :key="tag.id" type="border" v-for ="(tag , index) in article.tagList">{{tag.name}}</iv-tag>-->
               <!--<span >{{article.type}}</span>-->
             </div>
-            <p class="desc" >{{article.title | filterHtml | textLineBreak(70) }}</p>
-            <p class="desc" >{{article.content | filterHtml | textLineBreak(100) }}</p>
+            <p class="desc" >{{article.content | filterHtml | textLineBreak(150) }}</p>
             <!--<p >{{article.content | filterHtml | textLineBreak(70) }}</p>-->
             <!--<div class="tags">-->
               <!--<iv-tag :color="index | mapTagColor" :key="tag.id" type="border" v-for ="(tag , index) in article.tagList">{{tag.name}}</iv-tag>-->
