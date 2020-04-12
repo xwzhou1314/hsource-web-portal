@@ -15,7 +15,7 @@
     </router-link>
     <ul id="nav">
       <iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=10" width="300" height="25" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" ></iframe>
-      <li v-if="user && user.name"><span  class="nav-link contribute">你好呀！ {{user.name}}</span></li>
+      <li v-if="user && user.name"><span  class="nav-link contribute"><img style="width: 30px;height: 30px" src="http://image.hsource.com/group1/M00/00/00/wKiHe16S9WqAHjvRAAB-IBZC0hw682.jpg"></span></li>
       <li v-else><a :href="'/login'">登录</a></li>
     </ul>
     </div>
